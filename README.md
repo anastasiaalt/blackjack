@@ -96,11 +96,12 @@ PseudoCode
 Will have an image or style for each of the cards
 Four Seasons ~ Four Suits
 
-Player 1 = ()
-Player 2 = ()
-Player 3 = ()
-Player 4 = ()
-Player 5 = ()
+Participants {P1,P2,P3,P4,P5,P6}
+P1 = ()
+P2 = ()
+P3 = ()
+P4 = ()
+P5 = ()
 
 Dealer = ()
 
@@ -114,11 +115,17 @@ Fall = {2,3,4,5,6,7,8,9,10,J,Q,K,A}
 ---> Will need some sort of class for "hidden" that shows the back of the card / a generic card
 
 The Ace!
-//** need to include logic for the value of A as 1 or 21
---> Ace logic: 1) if A=1 && total card value >21 ---> Bust
-               2) if A=11 && total card value >21 ---> A=1
-               3) if A=11 && total card value <21 ---> Option for more cards
-               4) if A=1 && total card value <21 ---> Option for more cards
+//** need to include logic for the value of A as 1 or 11
+--> Ace logic: 
+               1) if A=1 && H>21 ---> Bust
+               2) if A=11 && H=21 ---> Pay player 100%
+               3) if A=11 && H<21 ---> Card? --> if No, next player
+               4) if yes,
+                  if A=1 && H>21 --> Bust
+                  if A=1 && H=21--> Pay player 100%
+                  if A=11 && H=21--> Pay player 100%
+                  if A=11 && H<21 --> Card? --> if No, next player
+              5) if yes, repeat #4
 
 Each player and dealer is going to be it's own section
 Thinking you are going to keep player's hands as ULs and add LIs with the individual cards to them as an organizing structure
