@@ -4,6 +4,10 @@ User Stories:
 -What are my requirements?
 -What should my app look like?
 
+*No insurance offered at this blackjack table
+*A win pays out 100%
+*A blackjack plays out 150%
+
 MONEY SECTION
 Set a bank or house pot
 Set each player purse
@@ -12,24 +16,31 @@ Set minimum bet
 
 GAME LOGIC SECTION
 
-Test if bank = 20*min bet --> assumption that 4 splits, 5 players, and dealer bust is worst possible outcome
-Ask player to play
+**Begin game / shuffle function**
+
+PROCESS FOR UPFRONT
+1) Test if bank = 20*min bet --> assumption that 4 splits, 5 players, and dealer bust is worst possible outcome
+2) Ask player to play
   If no, remove from game
-  If yes, deduct minimum bet from player purse
-Give each player one unknown card and one known card beginning with dealer
+  If yes, deduct minimum bet from player purse and ask next player
+2) Give each player one unknown card and one known card beginning with dealer
+3) Test for Dealer blackjack
 If known card = A, test dealer hand value for a K,Q,J, and 10 --> 
-  If dealer hand = automatic loss for players !=21
-  Test player hand value for any combination of A and K,Q,J, and 10 --> if yes, keep bet
-Test player hand value for any combination of A and K,Q,J, and 10 --> automatic win for player
-  Pay player 150% of bet
-Test if player has any combination of same two cards --> option to split and play two hands
-  If no, no action
-  If yes, ask to split?
-      If no, no action
-      If yes, 1) deduct same bet amount again from player purse
-              2) give two cards face down
-              3) move to next player
-Ask player if she wants another card --> if no, next player
+  If dealer hand =!21, continue game
+  If dealer hand = 21 && player hand =21, player keeps bet
+    Else, take player bet
+4) Test for player blackjack
+If player hand = !21, continue game
+If player hand = 21, pay player 150% of bet and return bet
+
+PROCESS FOR EACH PLAYER
+5) Test for split cards
+If player hand has two cards same value, ask split yes or no
+  If no, no action and step 6
+  If yes, 1) deduct same bet amount again from player purse
+          2) give two cards face down
+          3) move to next player
+6) Ask player if she wants another card --> if no, next player
                                          if yes, test new hand value
                                             if >21, remove player and take bet
                                             if =21, go to next player
@@ -40,31 +51,36 @@ Ask player if she wants another card --> if no, next player
                                                     if =21, go to next player
                                                     if <21, ask player if she wants another card
 //** this is going to be some kind of loop function to keep testing
-//** need to include logic in this section for the value of A as 1 or 21... Thinking this is the last thing you test each time as a last resort basically to keep you alive and run the test again under the values 11 and 1
+//** need to include logic in this section for the value of A as 1 or 21... Thinking this is the last thing you test each time as a last resort basically to keep you alive and run the test again under the values 11 and 1... Could also do this as a card value for the A itself versus the hand....
 
-Repeat ask for another card with all five players
-Reveal dealer's second card
-Test value of dealer's hand --> if hand >= 16, compare player hand values
-                                if hand < 16, add one card
-                                    if new hand >21, all remaining players win
-                                    if new hand >=16, compare player hand values
-                                    if new hand < 16, add one card
-                                          if new hand >21, all remaining players win
-                                          if new hand >=16, compare player hand values
-                                          if new hand < 16, add one card
-                                compare all hands
-                                    if dealer hand > player hand, take player bet
-                                    if dealer hand = player hand, return player bet
-                                    if dealer hand < player hand, return player bet + pay 100% to player
-//** this is going to be some kind of infinite loop function to keep testing
+Repeat #5 and #6 for all players
+
+PROCESS FOR DEALER
+7) Show dealer's second card and test value of dealer's hand
+If dealer hand >= 16, compare player hand values
+if hand < 16, add one card
+      if new hand >21, pay all remaining players 100%
+      if new hand >=16, compare all hand values
+      if new hand < 16, add one card to dealer hand
+            if new hand >21, pay all remaining players 100%
+            if new hand >=16, compare all hand values
+            if new hand < 16, add one card to dealer hand
+//** this is going to be some kind of loop function to keep testing                                
+
+8) Compare all hands
+       if dealer hand > player hand, take player bet
+       if dealer hand = player hand, return player bet
+       if dealer hand < player hand, return player bet + pay 100% to player
+
+9) Commit all transactions to bank and player purses
+//This means the bank sits outside the game logic
+
+9) Reset game
+Return all cards to deck
+Shuffle cards
+Allow all players to participate again
 
 
-
-
-
-*No insurance offered at this blackjack table
-*A win pays out 100%
-*A blackjack plays out 150%
 
 
 
