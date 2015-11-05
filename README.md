@@ -5,6 +5,7 @@ User Stories:
 -What should my app look like?
 
 *No insurance offered at this blackjack table
+*No split cards
 *A win pays out 100%
 *A blackjack plays out 150%
 
@@ -19,8 +20,8 @@ GAME LOGIC SECTION
 **Begin game / shuffle function**
 
 PROCESS FOR UPFRONT
-1) Test if bank = 20*min bet --> assumption that 4 splits, 5 players, and dealer bust is worst possible outcome
-2) Ask player to play
+X 1) Test if bank = 20*min bet --> assumption that 4 splits, 5 players, and dealer bust is worst possible outcome
+X 2) Ask player to play
   If no, remove from game
   If yes, deduct minimum bet from player purse and ask next player
 2) Give each player one unknown card and one known card beginning with dealer
@@ -116,7 +117,7 @@ Fall = {2,3,4,5,6,7,8,9,10,J,Q,K,A}
 
 The Ace!
 //** need to include logic for the value of A as 1 or 11
---> Ace logic: 
+--> Ace logic: x
                1) if A=1 && H>21 ---> Bust
                2) if A=11 && H=21 ---> Pay player 100%
                3) if A=11 && H<21 ---> Card? --> if No, next player
@@ -128,8 +129,20 @@ The Ace!
               5) if yes, repeat #4
 
 Each player and dealer is going to be it's own section
+
 Thinking you are going to keep player's hands as ULs and add LIs with the individual cards to them as an organizing structure
+
 You add and remove these LIs with their values as you select options
 
 Some kind of basic buttons where you declare "Hit" and "Stay" to add cards and pass to next player respectively
 
+Do the whole bank as a section on the left, use the purse logic....
+
+
+
+NEXT Steps:
+
+1) Set up the DOM and get a basic HTML outline of the page
+2) Make all the cards and the players
+3) Make the bank
+4) Work on the logic functions in Javascript / jQuery
