@@ -21,10 +21,14 @@ GAME LOGIC SECTION
 
 PROCESS FOR UPFRONT
 X 1) Test if bank = 20*min bet --> assumption that 4 splits, 5 players, and dealer bust is worst possible outcome
+--> Consulted with Sung, remove from game
 X 2) Ask player to play
   If no, remove from game
   If yes, deduct minimum bet from player purse and ask next player
-2) Give each player one unknown card and one known card beginning with dealer
+--> Consulted with Sung, remove from game
+3) Give each player one unknown card and one known card beginning with dealer
+--> Able to give each player two cards for now, will disguise later
+
 3) Test for Dealer blackjack
 If known card = A, test dealer hand value for a K,Q,J, and 10 --> 
   If dealer hand =!21, continue game
@@ -33,23 +37,26 @@ If known card = A, test dealer hand value for a K,Q,J, and 10 -->
 4) Test for player blackjack
 If player hand = !21, continue game
 If player hand = 21, pay player 150% of bet and return bet
+--> DONE
 
 PROCESS FOR EACH PLAYER
-5) Test for split cards
+X 5) Test for split cards
 If player hand has two cards same value, ask split yes or no
   If no, no action and step 6
   If yes, 1) deduct same bet amount again from player purse
           2) give two cards face down
           3) move to next player
-6) Ask player if she wants another card --> if no, next player
+---> Consulted with Sung, remove from now
+
+6) Player can Hit (yes) or Stay (no) --> if no, to dealer
                                          if yes, test new hand value
                                             if >21, remove player and take bet
-                                            if =21, go to next player
-                                            if <21, ask player if she wants another card
+                                            if =21, automatic stay
+                                            if <21, hit (yes) or stay (no)
                                                 if no, next player
                                                 if yes, test new hand value
                                                     if >21, remove player and take bet
-                                                    if =21, go to next player
+                                                    if =21, automatic stay
                                                     if <21, ask player if she wants another card
 //** this is going to be some kind of loop function to keep testing
 //** need to include logic in this section for the value of A as 1 or 21... Thinking this is the last thing you test each time as a last resort basically to keep you alive and run the test again under the values 11 and 1... Could also do this as a card value for the A itself versus the hand....
