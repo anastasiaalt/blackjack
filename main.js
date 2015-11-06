@@ -140,41 +140,41 @@ console.log(startGame());
 
 // After Start game is run, will have some kind of prompt show up that gives player option between Hit and Stay
 
-var hit = function (player) {
+var hit = function (cards, handValue) {
 	var deckStart = Math.round(Math.random(deck)*((deck.length)-1));
 	console.log(deck[deckStart]);
 	// picks a random starting point in the deck, dynamic based on deck length
 
-	player.push(deck[deckStart]);
+	cards.push(deck[deckStart]);
 	// adds the card at the random starting point to the person's cards
 
 	deck.splice(deckStart,1);
 	// removes the card at the random starting point from the deck
 	// all you have done to this point is just take another card out of the deck
 
-	var newPlayerValue = 0;
+	var newValue = 0;
 	// Need to have the counter outside the loop and enumerate each time
 
-	for (var i = 0; i < playerCards.length; i++) {
-		var newPlayerValue = newPlayerValue + playerCards[i].value;
+	for (var i = 0; i < cards.length; i++) {
+		var newValue = newValue + cards[i].value;
 	};
 	// running sum of player's hand value
 
-	playerHandValue = newPlayerValue;
+	handValue = newValue;
 	// set the player's hand value equal to the new running sum
 
-	if (playerHandValue>21) {
-		pot = 0;
-		dealerBank +=playerBet;
-		console.log("Bust! Player has "+playerHandValue);
+	if (handValue>21) {
+		console.log("Bust! Hand is valued at "+handValue);
 	} else {
-		console.log("Player has "+playerHandValue+". Stay or hit?");
+		console.log("Hand is valued at "+handValue+". Stay or hit?");
 	};
 	// Tests if player busts and returns hand value
 };
 
 
+var testDealer = function(dealer) {
 
+};
 
 
 
