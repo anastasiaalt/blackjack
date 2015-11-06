@@ -12,11 +12,11 @@ var pot = 0;
 var playerBet = 20;
 
 var restart = function (){
-	console.log("Restart")
+	console.log("Restart");
 };
 
 var compareHands = function (){
-	console.log("Compare hands")
+	console.log("Compare hands");
 };
 
 var deck = [
@@ -110,30 +110,30 @@ var startGame = function () {
 	var newDealerValue = 0;
 
 	for (var i = 0; i < playerCards.length; i++) {
-		var newPlayerValue = newPlayerValue + playerCards[i].value;
-	};
+		newPlayerValue = newPlayerValue + playerCards[i].value;
+	}
 	playerHandValue = newPlayerValue;
 
 	for (var i = 0; i < dealerCards.length; i++) {
-		var newDealerValue = newDealerValue + dealerCards[i].value;
-	};
+		newDealerValue = newDealerValue + dealerCards[i].value;
+	}
 	dealerHandValue = newDealerValue;
 
 	if (dealerHandValue === 21 && playerHandValue === 21) {
 			pot=0;
-			playerBank += playerBet
-		console.log("Push. Dealer and player both have 21.")
+			playerBank += playerBet;
+		console.log("Push. Dealer and player both have 21.");
 
 		} else if (dealerHandValue === 21) {
 			pot = 0;
 			dealerBank +=playerBet;
-			console.log("Dealer has blackjack. Player loses.")
+			console.log("Dealer has blackjack. Player loses.");
 		} else if (playerHandValue === 21) {	
 			pot = 0;
 			playerBank += playerBet + (1.5*playerBet);
 			dealerBank -=(1.5*playerBet);
-			console.log("Player has blackjack. Player wins.")
-		};
+			console.log("Player has blackjack. Player wins.");
+		}
 	console.log(playerBank);
 	console.log(dealerBank);
 	console.log(pot);
@@ -153,8 +153,8 @@ var hit = function (cards, handValue) {
 	var newValue = 0;
 
 	for (var i = 0; i < cards.length; i++) {
-		var newValue = newValue + cards[i].value;
-	};
+		newValue = newValue + cards[i].value;
+	}
 
 	handValue = newValue;
 };
@@ -164,8 +164,8 @@ var testPlayer = function() {
 	var newValue = 0;
 
 	for (var i = 0; i < playerCards.length; i++) {
-		var newValue = newValue + playerCards[i].value;
-	};
+		newValue = newValue + playerCards[i].value;
+	}
 
 	playerHandValue = newValue;
 
@@ -175,7 +175,7 @@ var testPlayer = function() {
 		console.log("Player Bust! Player hand is valued at "+playerHandValue);
 	} else {
 		console.log("Player hand is valued at "+playerHandValue+". Stay or hit?");
-	};
+	}
 };
 
 
@@ -184,15 +184,15 @@ var testDealer = function() {
 	var newValue = 0;
 
 	for (var i = 0; i < dealerCards.length; i++) {
-		var newValue = newValue + dealerCards[i].value;
-	};
+		newValue = newValue + dealerCards[i].value;
+	}
 
 	dealerHandValue = newValue;
 	
 	if (dealerHandValue>21) {
 		pot = 0;
 		playerBank +=playerBet +playerBet;
-		dealerBank -=playerBet
+		dealerBank -=playerBet;
 		console.log("Dealer Bust / Player Wins! Dealer hand is valued at "+dealerHandValue+". Player has "+playerBank+" total");
 	
 	} else if (dealerHandValue<16) {
@@ -212,9 +212,8 @@ var testDealer = function() {
 			pot = 0;
 			playerBank +=playerBet;
 			console.log("Draw. Player gets back bet");
-		};
-	};
+		}
+	}
 };
-
 
 
