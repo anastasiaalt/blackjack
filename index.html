@@ -6,8 +6,39 @@
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-	
-
+	<div>
+		<div id="headline-background">
+			<h1 id="headline">Welcome to Dance Party Black Jack</h1>
+		</div>	
+		<section>
+		<!-- Have the Start and Reset buttons in this div -->
+			<button id="start">Start</button>
+			<button id="restart">Restart</button>
+		</section>
+		<section>
+			<div id="dealer">
+				<ul id="dealers-hand">
+				<!--Have this as li's that you add for each card  -->
+				</ul>
+				<img src="" id="deck">
+				<!-- I think I want a picture of a deck here but not sure if any functionality -->
+			</div>
+		</section>
+		<section>
+		<!-- Have the hit and stay/pass buttons in this section -->
+			<button id="Hit">Hit</button>
+			<button id="Stay">Stay</button>
+		</section>
+		<section>
+		<!-- Have the player's cards in this section -->
+			<div id="player">
+				<ul id="players-hand">
+				<!--Have this as li's that you add for each card  -->
+				</ul>
+				<input id="bet" placeholder="Player enters bet amount here">
+			</div>			
+		</section>	
+	</div>
 <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
 <script type="text/javascript" src="main.js"></script>
 </body>

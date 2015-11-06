@@ -1,7 +1,11 @@
-/*@import url(https://fonts.googleapis.com/css?family=Oswald:400,300);
+/*Card Deck thoughts?*/
+/*https://openclipart.org/download/175410/guyenne-classic.svg*/
+
+
+@import url(https://fonts.googleapis.com/css?family=Oswald:400,300);
 
 body {
-	background: url(http://images.fineartamerica.com/images-medium-large/a-midsummer-nights-dream-ht-green.jpg);
+	background: url(http://static1.squarespace.com/static/54de5a26e4b0d9caed749706/t/54deda98e4b043f1c994ba74/1423891097278/dance+party.jpg?format=1500w);
 	background-size: cover;
 	background-repeat: no-repeat;
 }
@@ -9,11 +13,34 @@ body {
 h1 {
 	font-family: 'Oswald', serif;
 	font-size: 50px;
-	color: rgb(150,224,9);
+	color: rgb(3,0,85);
+	text-align: center;
 }
 
 li {
 	font-family: 'Oswald', serif;
 	font-size: 25px;
 	color: white;
-}*/
+}
+
+#headline-background {
+	background-color: rgb(240,249,254);
+	height: 100px;
+	width: 100%;
+}
+
+#dealer {
+	height: 500 px;
+	width: 100%;
+}
+/*Not getting wide enough for cards*/
+
+#player {
+	height: 500 px;
+	width: 100%;
+}
+/*Not getting wide enough for cards*/
+
+#bet {
+	width: 150px;
+}

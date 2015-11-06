@@ -88,6 +88,12 @@ var betMore = function () {
 	pot = playerBet;
 	playerBank = playerBank - playerBet;
 };
+// Add functionality to add bet
+
+var resetGame = function() {
+	location.reload();
+};
+
 
 var startGame = function () {
 	pot = playerBet;
