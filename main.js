@@ -78,13 +78,10 @@ var deck = [
 var deal = function (person){
 	var deckStart = Math.round(Math.random(deck)*((deck.length)-1));
 	console.log(deck[deckStart]);
-	// picks a random starting point in the deck, dynamic based on deck length
 
 	person.push(deck[deckStart]);
-	// adds the card at the random starting point to the person's cards
 
 	deck.splice(deckStart,1);
-	// removes the card at the random starting point from the deck
 };
 
 var betMore = function () {
@@ -95,7 +92,6 @@ var betMore = function () {
 var startGame = function () {
 	pot = playerBet;
 	playerBank = playerBank - playerBet;
-	// put the player's bet in the pot, remove bet from player's bank
 
 	deal(dealerCards);
 	deal(playerCards);
@@ -103,29 +99,23 @@ var startGame = function () {
 	deal(playerCards);
 	console.log(dealerCards);
 	console.log(playerCards);
-	// deals two cards beginning with the dealer to the dealer and the player
 
 	var newPlayerValue = 0;
 	var newDealerValue = 0;
-	// Need to have the counter outside the loop and enumerate each time
 
 	for (var i = 0; i < playerCards.length; i++) {
 		var newPlayerValue = newPlayerValue + playerCards[i].value;
 	};
-	// running sum of player's hand value
 	playerHandValue = newPlayerValue;
-	// set the player's hand value equal to the new running sum
 
 	for (var i = 0; i < dealerCards.length; i++) {
 		var newDealerValue = newDealerValue + dealerCards[i].value;
 	};
-	// running sum of the dealer's hand
 	dealerHandValue = newDealerValue;
-	// set the dealer's hand value equal to the new running sum
 
 	if (dealerHandValue === 21 && playerHandValue === 21) {
-		restart
-		// This is nothing at the moment but this will be the function to restart the whole game
+			pot=0;
+			playerBank += playerBet
 		console.log("Push. Dealer and player both have 21.")
 
 		} else if (dealerHandValue === 21) {
@@ -141,7 +131,6 @@ var startGame = function () {
 	console.log(playerBank);
 	console.log(dealerBank);
 	console.log(pot);
-	//Tests any blackjacks after the start of the game, adjusts banks if so 
 };
 console.log(startGame());
 
@@ -150,25 +139,18 @@ console.log(startGame());
 var hit = function (cards, handValue) {
 	var deckStart = Math.round(Math.random(deck)*((deck.length)-1));
 	console.log(deck[deckStart]);
-	// picks a random starting point in the deck, dynamic based on deck length
 
 	cards.push(deck[deckStart]);
-	// adds the card at the random starting point to the person's cards
 
 	deck.splice(deckStart,1);
-	// removes the card at the random starting point from the deck
-	// all you have done to this point is just take another card out of the deck
 
 	var newValue = 0;
-	// Need to have the counter outside the loop and enumerate each time
 
 	for (var i = 0; i < cards.length; i++) {
 		var newValue = newValue + cards[i].value;
 	};
-	// running sum of player's hand value
 
 	handValue = newValue;
-	// set the player's hand value equal to the new running sum
 };
 
 
