@@ -126,7 +126,10 @@ The Ace!
 //** need to include logic for the value of A as 1 or 11
 --> Ace logic: x
                1) if A=1 && H>21 ---> Bust
+               2) if A=1 && H=21 ---> Pay player 100%
                2) if A=11 && H=21 ---> Pay player 100%
+               3)    
+                  if A=1 && H<21 ---> Card? --> if No, next player
                3) if A=11 && H<21 ---> Card? --> if No, next player
                4) if yes,
                   if A=1 && H>21 --> Bust
