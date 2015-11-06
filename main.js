@@ -1,7 +1,10 @@
 console.log("Hello World");
 
 var dealerCards = [];
+var dealerHandValue = 0;
+
 var playerCards = [];
+var playerHandValue = 0;
 
 var dealerBank = 1000;
 var playerBank = 200;
@@ -95,17 +98,38 @@ var startGame = function () {
 	console.log(playerCards);
 	// deals two cards beginning with the dealer to the dealer and the player
 
-	if (dealerCards[0].value+dealerCards[1].value === 21 && playerCards[0].value+playerCards[1].value === 21) {
+	var newPlayerValue = 0;
+	var newDealerValue = 0;
+	// Need to have the counter outside the loop and enumerate each time
+
+	for (var i = 0; i < playerCards.length; i++) {
+		var newPlayerValue = newPlayerValue + playerCards[i].value;
+	};
+	// running sum of player's hand value
+	playerHandValue = newPlayerValue;
+	// set the player's hand value equal to the new running sum
+
+	for (var i = 0; i < dealerCards.length; i++) {
+		var newDealerValue = newDealerValue + dealerCards[i].value;
+	};
+	// running sum of the dealer's hand
+	dealerHandValue = newDealerValue;
+	// set the dealer's hand value equal to the new running sum
+
+	if (dealerHandValue === 21 && playerHandValue === 21) {
 		restart
 		// This is nothing at the moment but this will be the function to restart the whole game
+		console.log("Push. Dealer and player both have 21.")
 
-		} else if (dealerCards[0].value+dealerCards[1].value === 21) {
+		} else if (dealerHandValue === 21) {
 			pot = 0;
 			dealerBank +=playerBet;
-		} else if (playerCards[0].value+playerCards[1].value === 21) {	
+			console.log("Dealer has blackjack. Player loses.")
+		} else if (playerHandValue === 21) {	
 			pot = 0;
 			playerBank += playerBet + (1.5*playerBet);
 			dealerBank -=(1.5*playerBet);
+			console.log("Player has blackjack. Player wins.")
 		};
 	console.log(playerBank);
 	console.log(dealerBank);
@@ -128,10 +152,26 @@ var hit = function (player) {
 	// removes the card at the random starting point from the deck
 	// all you have done to this point is just take another card out of the deck
 
+	var newPlayerValue = 0;
+	// Need to have the counter outside the loop and enumerate each time
+
+	for (var i = 0; i < playerCards.length; i++) {
+		var newPlayerValue = newPlayerValue + playerCards[i].value;
+	};
+	// running sum of player's hand value
+
+	playerHandValue = newPlayerValue;
+	// set the player's hand value equal to the new running sum
+
+	if (playerHandValue>21) {
+		pot = 0;
+		dealerBank +=playerBet;
+		console.log("Bust! Player has "+playerHandValue);
+	} else {
+		console.log("Player has "+playerHandValue+". Stay or hit?");
+	};
+	// Tests if player busts and returns hand value
 };
-
-
-
 
 
 
