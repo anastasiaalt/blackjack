@@ -15,6 +15,10 @@ var restart = function (){
 	console.log("Restart")
 };
 
+var compareHands = function (){
+	console.log("Compare hands")
+};
+
 var deck = [
 	{name: "2 Disco", value: 2}, 
 	{name: "3 Disco", value: 3},
@@ -82,8 +86,11 @@ var deal = function (person){
 	deck.splice(deckStart,1);
 	// removes the card at the random starting point from the deck
 };
-// I am removing two objects from the deck but somehow adding 4 objects to each the dealer and player's cards
 
+var betMore = function () {
+	pot = playerBet;
+	playerBank = playerBank - playerBet;
+};
 
 var startGame = function () {
 	pot = playerBet;
@@ -162,23 +169,64 @@ var hit = function (cards, handValue) {
 
 	handValue = newValue;
 	// set the player's hand value equal to the new running sum
+};
 
-	if (handValue>21) {
-		console.log("Bust! Hand is valued at "+handValue);
-	} else {
-		console.log("Hand is valued at "+handValue+". Stay or hit?");
+
+var testPlayer = function() {
+	var newValue = 0;
+
+	for (var i = 0; i < playerCards.length; i++) {
+		var newValue = newValue + playerCards[i].value;
 	};
-	// Tests if player busts and returns hand value
+
+	playerHandValue = newValue;
+
+	if (playerHandValue>21) {
+		pot = 0;
+		dealerBank +=playerBet;
+		console.log("Player Bust! Player hand is valued at "+playerHandValue);
+	} else {
+		console.log("Player hand is valued at "+playerHandValue+". Stay or hit?");
+	};
 };
 
 
-var testDealer = function(dealer) {
 
+var testDealer = function() {
+	var newValue = 0;
+
+	for (var i = 0; i < dealerCards.length; i++) {
+		var newValue = newValue + dealerCards[i].value;
+	};
+
+	dealerHandValue = newValue;
+	
+	if (dealerHandValue>21) {
+		pot = 0;
+		playerBank +=playerBet +playerBet;
+		dealerBank -=playerBet
+		console.log("Dealer Bust / Player Wins! Dealer hand is valued at "+dealerHandValue+". Player has "+playerBank+" total");
+	
+	} else if (dealerHandValue<16) {
+		console.log("Dealer has "+dealerHandValue+" and therefore must hit");
+
+	} else {
+		if (dealerHandValue>playerHandValue) {
+			pot = 0;
+			dealerBank +=playerBet;
+			console.log("Player loses");
+		} else if (dealerHandValue<playerHandValue) {
+			pot = 0;
+			dealerBank -=playerBet;
+			playerBank +=playerBet +playerBet;
+			console.log("Player wins");
+		} else {
+			pot = 0;
+			playerBank +=playerBet;
+			console.log("Draw. Player gets back bet");
+		};
+	};
 };
-
-
-
-
 
 
 
