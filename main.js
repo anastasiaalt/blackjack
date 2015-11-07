@@ -11,67 +11,65 @@ var playerBank = 200;
 var pot = 0;
 var playerBet = 20;
 
-var restart = function (){
-	console.log("Restart");
-};
+// var restart = function (){
+// 	addEventListener()
+// 	console.log("Restart");
+// };
 
-var compareHands = function (){
-	console.log("Compare hands");
-};
-
+// add a suit
 var deck = [
-	{name: "2 Disco", value: 2}, 
-	{name: "3 Disco", value: 3},
-	{name: "4 Disco", value: 4},
-	{name: "5 Disco", value: 5},
-	{name: "6 Disco", value: 6},	
-	{name: "7 Disco", value: 7},
-	{name: "8 Disco", value: 8},
-	{name: "9 Disco", value: 9},
-	{name: "10 Disco", value: 10},
-	{name: "Jack Disco", value: 10},
-	{name: "Queen Disco", value: 10},
-	{name: "King Disco", value: 10},
-	{name: "Ace Disco", value: 11},
-	{name: "2 Rap 2", value: 2}, 
-	{name: "3 Rap 3", value: 3},
-	{name: "4 Rap 4", value: 4},
-	{name: "5 Rap 5", value: 5},
-	{name: "6 Rap 6", value: 6},	
-	{name: "7 Rap 7", value: 7},
-	{name: "8 Rap 8", value: 8},
-	{name: "9 Rap 9", value: 9},
-	{name: "10 Rap", value: 10},
-	{name: "Jack Rap", value: 10},
-	{name: "Queen Rap", value: 10},
-	{name: "King Rap", value: 10},
-	{name: "Ace Rap", value: 11},				
-	{name: "2 Country", value: 2}, 
-	{name: "3 Country", value: 3},
-	{name: "4 Country", value: 4},
-	{name: "5 Country", value: 5},
-	{name: "6 Country", value: 6},	
-	{name: "7 Country", value: 7},
-	{name: "8 Country", value: 8},
-	{name: "9 Country", value: 9},
-	{name: "10 Country", value: 10},
-	{name: "Jack Country", value: 10},
-	{name: "Queen Country", value: 10},
-	{name: "King Country", value: 10},
-	{name: "Ace Country", value: 11},	
-	{name: "2 Pop", value: 2}, 
-	{name: "3 Pop", value: 3},
-	{name: "4 Pop", value: 4},
-	{name: "5 Pop", value: 5},
-	{name: "6 Pop", value: 6},	
-	{name: "7 Pop", value: 7},
-	{name: "8 Pop", value: 8},
-	{name: "9 Pop", value: 9},
-	{name: "10 Pop", value: 10},
-	{name: "Jack Pop", value: 10},
-	{name: "Queen Pop", value: 10},
-	{name: "King Pop", value: 10},
-	{name: "Ace Pop", value: 11},	
+	{name: "2", value: 2, suit: "Disco", img: "image"}, 
+	{name: "3", value: 3, suit: "Disco"},
+	{name: "4", value: 4, suit: "Disco"},
+	{name: "5", value: 5, suit: "Disco"},
+	{name: "6", value: 6, suit: "Disco"},	
+	{name: "7", value: 7, suit: "Disco"},
+	{name: "8", value: 8, suit: "Disco"},
+	{name: "9", value: 9, suit: "Disco"},
+	{name: "10", value: 10, suit: "Disco"},
+	{name: "Jack", value: 10, suit: "Disco"},
+	{name: "Queen", value: 10, suit: "Disco"},
+	{name: "King", value: 10, suit: "Disco"},
+	{name: "Ace", value: 11, suit: "Disco"},
+	{name: "2", value: 2, suit: "Rap"}, 
+	{name: "3", value: 3, suit: "Rap"},
+	{name: "4", value: 4, suit: "Rap"},
+	{name: "5", value: 5, suit: "Rap"},
+	{name: "6", value: 6, suit: "Rap"},	
+	{name: "7", value: 7, suit: "Rap"},
+	{name: "8", value: 8, suit: "Rap"},
+	{name: "9", value: 9, suit: "Rap"},
+	{name: "10", value: 10, suit: "Rap"},
+	{name: "Jack", value: 10, suit: "Rap"},
+	{name: "Queen", value: 10, suit: "Rap"},
+	{name: "King", value: 10, suit: "Rap"},
+	{name: "Ace", value: 11, suit: "Rap"},				
+	{name: "2", value: 2, suit: "Country"}, 
+	{name: "3", value: 3, suit: "Country"},
+	{name: "4", value: 4, suit: "Country"},
+	{name: "5", value: 5, suit: "Country"},
+	{name: "6", value: 6, suit: "Country"},	
+	{name: "7", value: 7, suit: "Country"},
+	{name: "8", value: 8, suit: "Country"},
+	{name: "9", value: 9, suit: "Country"},
+	{name: "10", value: 10, suit: "Country"},
+	{name: "Jack", value: 10, suit: "Country"},
+	{name: "Queen", value: 10, suit: "Country"},
+	{name: "King", value: 10, suit: "Country"},
+	{name: "Ace", value: 11, suit: "Country"},	
+	{name: "2", value: 2, suit: "Pop"}, 
+	{name: "3", value: 3, suit: "Pop"},
+	{name: "4", value: 4, suit: "Pop"},
+	{name: "5", value: 5, suit: "Pop"},
+	{name: "6", value: 6, suit: "Pop"},	
+	{name: "7", value: 7, suit: "Pop"},
+	{name: "8", value: 8, suit: "Pop"},
+	{name: "9", value: 9, suit: "Pop"},
+	{name: "10", value: 10, suit: "Pop"},
+	{name: "Jack", value: 10, suit: "Pop"},
+	{name: "Queen", value: 10, suit: "Pop"},
+	{name: "King", value: 10, suit: "Pop"},
+	{name: "Ace", value: 11, suit: "Pop"},	
 ];
 
 
@@ -84,16 +82,11 @@ var deal = function (person){
 	deck.splice(deckStart,1);
 };
 
-var betMore = function () {
-	pot = playerBet;
-	playerBank = playerBank - playerBet;
-};
+// var betMore = function () {
+// 	pot = playerBet;
+// 	playerBank = playerBank - playerBet;
+// };
 // Add functionality to add bet
-
-var resetGame = function() {
-	location.reload();
-};
-
 
 var startGame = function () {
 	pot = playerBet;
@@ -142,7 +135,8 @@ console.log(startGame());
 
 // After Start game is run, will have some kind of prompt show up that gives player option between Hit and Stay
 
-var hit = function (cards, handValue) {
+var hit = function(cards, handValue) {
+	console.log(cards, handValue)
 	var deckStart = Math.round(Math.random(deck)*((deck.length)-1));
 	console.log(deck[deckStart]);
 
@@ -154,10 +148,26 @@ var hit = function (cards, handValue) {
 
 	for (var i = 0; i < cards.length; i++) {
 		newValue = newValue + cards[i].value;
-	}
+	};
 
 	handValue = newValue;
 };
+
+
+
+
+var hitButton = document.querySelector('#hit');
+
+var handleHit = function(event){
+	hit(playerCards, playerHandValue);
+	console.log('click');
+	testPlayer
+};
+
+hitButton.addEventListener('click', handleHit);
+
+var stayButton = document.querySelector('#stay');
+
 
 
 var testPlayer = function() {
@@ -216,4 +226,8 @@ var testDealer = function() {
 	}
 };
 
+
+var testAce = function() {
+
+};
 
