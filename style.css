@@ -17,6 +17,13 @@ h1 {
 	text-align: center;
 }
 
+h2 {
+	font-family: 'Oswald', serif;
+	font-size: 30px;
+	color: rgb(225,241,255);
+	text-align: center;
+}
+
 li {
 	font-family: 'Oswald', serif;
 	font-size: 25px;
