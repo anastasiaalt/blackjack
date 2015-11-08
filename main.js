@@ -133,7 +133,18 @@ var startGame = function () {
 };
 console.log(startGame());
 
+var startButton = document.querySelector('#start');
+
+startButton.addEventListener('click', start);
+
+
+
 // After Start game is run, will have some kind of prompt show up that gives player option between Hit and Stay
+
+
+
+
+
 
 var hit = function(cards, handValue) {
 	console.log(cards, handValue)
@@ -267,12 +278,11 @@ var resetAce = function () {
 		dealerHandValue = dealerHandValue - ((dealerAces-1)*10);
 		if (dealerHandValue>21) {
 			dealerHandValue = dealerHandValue - (dealerAces*10);
-	} else{
+		};
+	} else {
 		dealerHandValue = dealerHandValue;
 	};
 };
-
-
 
 
 
