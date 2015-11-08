@@ -135,7 +135,7 @@ console.log(startGame());
 
 var startButton = document.querySelector('#start');
 
-startButton.addEventListener('click', start);
+startButton.addEventListener('click', startGame);
 
 
 
