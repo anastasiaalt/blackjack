@@ -11,12 +11,7 @@ var playerBank = 200;
 var pot = 0;
 var playerBet = 20;
 
-// var restart = function (){
-// 	addEventListener()
-// 	console.log("Restart");
-// };
 
-// add a suit
 var deck = [
 	{name: "2", value: 2, suit: "Disco", img: "image"}, 
 	{name: "3", value: 3, suit: "Disco"},
@@ -71,6 +66,24 @@ var deck = [
 	{name: "King", value: 10, suit: "Pop"},
 	{name: "Ace", value: 11, suit: "Pop"},	
 ];
+
+
+var restart = function (){
+	for (var i = 0; i < dealerCards.length; i++) {
+		dealerCards.splice(i,1);
+		deck.push(dealerCards[i]);
+	};
+	for (var i = 0; i < playerCards.length; i++) {
+		playerCards.splice(i,1);
+		deck.push(playerCards[i]);
+	};
+	console.log("Restart");
+};
+
+// Want to write a function that takes everything that is in player cards and dealer cards from the previous turn and puts back into deck
+
+
+
 
 
 var deal = function (person){
