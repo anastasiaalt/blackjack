@@ -238,7 +238,7 @@ var testDealer = function() {
 
 var dealerAces = 0;
 
-var testAceDealer = function() {
+var aceDealer = function() {
 	for (var i = 0; i < dealerCards.length; i++) {
 		var aceCount =0;
 		if (dealerCards[i].name="Ace") {
@@ -247,8 +247,36 @@ var testAceDealer = function() {
 	//Want to get the number of aces and then see if hand value options with a=1 is <21 
 	};
 	dealerAces =aceCount;
+	dealerHandValue = dealerHandValue - dealerAces*10;
+};
+
+var resetAce = function () {
+	if (dealerAces===1) {
+		dealerHandValue = dealerHandValue - (dealerAces*10);
+	} else if (dealerAces===2) {
+		dealerHandValue = dealerHandValue - ((dealerAces-1)*10);
+		if (dealerHandValue>21) {
+			dealerHandValue = dealerHandValue - (dealerAces*10);
+		};
+	} else if (dealerAces===3) {
+		dealerHandValue = dealerHandValue - ((dealerAces-1)*10);
+		if (dealerHandValue>21) {
+			dealerHandValue = dealerHandValue - (dealerAces*10);
+		};
+	} else if (dealerAces===4) {
+		dealerHandValue = dealerHandValue - ((dealerAces-1)*10);
+		if (dealerHandValue>21) {
+			dealerHandValue = dealerHandValue - (dealerAces*10);
+	} else{
+		dealerHandValue = dealerHandValue;
+	};
 };
 
 
 
+
+
+// You only need to run this check as a final check in the event that it appears to be a bust of +21
+// That's where you insert the function, don't need to test the hand at that pt
+// Reset the hand value
 
