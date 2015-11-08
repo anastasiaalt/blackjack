@@ -80,8 +80,6 @@ var restart = function (){
 	console.log("Restart");
 };
 
-// Want to write a function that takes everything that is in player cards and dealer cards from the previous turn and puts back into deck
-
 
 
 
