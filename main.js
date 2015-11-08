@@ -170,6 +170,16 @@ var stayButton = document.querySelector('#stay');
 
 
 
+
+var handleStay = function(event){
+
+};
+// This is where everything for the dealer will kick off after the player has agreed to hit
+
+
+
+
+
 var testPlayer = function() {
 	var newValue = 0;
 
@@ -226,8 +236,19 @@ var testDealer = function() {
 	}
 };
 
+var dealerAces = 0;
 
-var testAce = function() {
-
+var testAceDealer = function() {
+	for (var i = 0; i < dealerCards.length; i++) {
+		var aceCount =0;
+		if (dealerCards[i].name="Ace") {
+			aceCount += aceCount +1;
+		};
+	//Want to get the number of aces and then see if hand value options with a=1 is <21 
+	};
+	dealerAces =aceCount;
 };
+
+
+
 
