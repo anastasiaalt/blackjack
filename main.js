@@ -68,7 +68,7 @@ var deck = [
 ];
 
 
-var restart = function (){
+var resetGame = function (){
 	for (var i = 0; i < dealerCards.length; i++) {
 		dealerCards.splice(i,1);
 		deck.push(dealerCards[i]);
@@ -77,10 +77,12 @@ var restart = function (){
 		playerCards.splice(i,1);
 		deck.push(playerCards[i]);
 	};
-	console.log("Restart");
+	console.log("Reset");
 };
 
+var resetButton = document.querySelector('#reset');
 
+resetButton.addEventListener('click', resetGame);
 
 
 
@@ -141,13 +143,6 @@ console.log(startGame());
 var startButton = document.querySelector('#start');
 
 startButton.addEventListener('click', startGame);
-
-
-
-// After Start game is run, will have some kind of prompt show up that gives player option between Hit and Stay
-
-
-
 
 
 
@@ -289,9 +284,15 @@ var resetAce = function () {
 	};
 };
 
-
-
 // You only need to run this check as a final check in the event that it appears to be a bust of +21
 // That's where you insert the function, don't need to test the hand at that pt
 // Reset the hand value
+
+
+
+
+
+
+
+
 
