@@ -291,13 +291,19 @@ var resetAce = function () {
 // Reset the hand value
 
 
+var showCardPlayerA = function () {
+	for (var i = 0; i < playerCards.length; i ++){
+    	var newCard = playerCards[i].img;
+    	newCard.classList.add('card-format');
+    	playerSection.appendChild(newCard);
+	};
+};
 
 
-
-var showCard = function (cards) {
-	for (var i = 0; i < cards.length; i ++){
+var showCardPlayerB = function () {
+	for (var i = 0; i < playerCards.length; i ++){
     	var newCard = document.createElement('div');
-    	newCard = cards[i].img;
+    	newCard.appendChild(playerCards[i].img);
     	newCard.classList.add('card-format');
     	playerSection.appendChild(newCard);
 	};
