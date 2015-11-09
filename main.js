@@ -360,12 +360,7 @@ var resetAcePlayer = function () {
 	};
 };
 
-
-
-
-// You only need to run this check as a final check in the event that it appears to be a bust of +21
-// That's where you insert the function, don't need to test the hand at that pt
-// Reset the hand value
+// Only run this is playerHandValue>21
 
 
 
