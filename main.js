@@ -237,20 +237,6 @@ hitButton.addEventListener('click', handleHit);
 
 
 
-
-var stayButton = document.querySelector('#stay');
-
-var handleStay = function(event){
-
-};
-// This is where everything for the dealer will kick off after the player has agreed to hit
-
-
-
-
-
-
-
 var testDealer = function() {
 	var newValue = 0;
 
@@ -301,7 +287,7 @@ var aceDealer = function() {
 	dealerHandValue = dealerHandValue - dealerAces*10;
 };
 
-var resetAce = function () {
+var resetAceDealer = function () {
 	if (dealerAces===1) {
 		dealerHandValue = dealerHandValue - (dealerAces*10);
 	} else if (dealerAces===2) {
@@ -324,9 +310,78 @@ var resetAce = function () {
 	};
 };
 
+var playerAces = 0;
+var newPlayerHandValue2 = 0;
+var newPlayerHandValue1 = 0;
+
+
+var resetAcePlayer = function () {
+	for (var i = 0; i < playerCards.length; i++) {
+		var aceCount =0;
+		if (playerCards[i].name="Ace") {
+			aceCount += aceCount +1;
+		};
+	};
+	playerAces =aceCount;
+	playerHandValue = playerHandValue - playerAces*10;
+
+	if (playerAces===1) {
+		newPlayerHandValue1 = playerHandValue - (playerAces*10);
+	} else if (playerAces===2) {
+		newPlayerHandValue2 = playerHandValue - ((playerAces-1)*10);
+		if (newPlayerHandValue2>21) {
+			newPlayerHandValue1 = playerHandValue - (playerAces*10);
+		};
+	} else if (playerAces===3) {
+		newPlayerHandValue2 = playerHandValue - ((playerAces-1)*10);
+		if (newPlayerHandValue2>21) {
+			newPlayerHandValue1 = playerHandValue - (playerAces*10);
+		};
+	} else if (playerAces===4) {
+		newPlayerHandValue2 = playerHandValue - ((playerAces-1)*10);
+		if (newPlayerHandValue2>21) {
+			newPlayerHandValue1 = playerHandValue - (playerAces*10);
+		};
+	};
+	if (playerHandValue>21) {
+		playerHandValue = newPlayerHandValue2;
+	} else{
+		playerHandValue = playerHandValue;
+	};
+	if (newPlayerHandValue2>21) {
+		playerHandValue = newPlayerHandValue1;
+	} else{
+		playerHandValue = playerHandValue;
+	};
+	if (newPlayerHandValue1>21) {
+		playerHandValue = newPlayerHandValue1;
+	} else{
+		playerHandValue = playerHandValue;
+	};
+};
+
+
+
+
 // You only need to run this check as a final check in the event that it appears to be a bust of +21
 // That's where you insert the function, don't need to test the hand at that pt
 // Reset the hand value
+
+
+
+
+
+
+var stayButton = document.querySelector('#stay');
+
+var handleStay = function(event){
+
+};
+// This is where everything for the dealer will kick off after the player has agreed to hit
+
+
+
+
 
 
 
