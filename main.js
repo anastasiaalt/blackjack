@@ -290,12 +290,11 @@ var resetAce = function () {
 // That's where you insert the function, don't need to test the hand at that pt
 // Reset the hand value
 
-
-var showCardPlayerD = function () {
+var showCardPlayerE = function () {
 	for (var i = 0; i < playerCards.length; i ++){
+    	var newDiv = document.createElement('div');
     	var newCard = playerCards[i].img;
-    	// newCard.classList.add('card-format');
-    	playerSection.innerHTML = newCard;
+    	newDiv.innerHTML = newCard;
+    	playerSection.appendChild(newDiv);
 	};
 };
-
