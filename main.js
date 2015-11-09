@@ -11,8 +11,7 @@ var playerHandValue = 0;
 var dealerBank = 1000;
 var playerBank = 200;
 var pot = 0;
-var playerBet = 20;
-
+var playerBet = 0;
 
 var deck = [
 	{name: "2", value: 2, suit: "Hearts", img: '<img class="card-format" src="http://www.kemplen.co.uk/sk329858/2h.jpg">'}, 
@@ -69,76 +68,13 @@ var deck = [
 	{name: "Ace", value: 11, suit: "Diamonds", img: '<img class="card-format" src="http://www.11betties.org/wp-content/uploads/2013/09/Ace-Diamonds-Playing-Card-Illustration-by-Jonathan-Burton.jpg">'},	
 ];
 
-
-var resetGame = function (){
-	for (var i = 0; i < dealerCards.length; i++) {
-		dealerCards.splice(i,1);
-		deck.push(dealerCards[i]);
-	};
-	for (var i = 0; i < playerCards.length; i++) {
-		playerCards.splice(i,1);
-		deck.push(playerCards[i]);
-	};
-	console.log("Reset");
-};
-
-var resetButton = document.querySelector('#reset');
-
-resetButton.addEventListener('click', resetGame);
-
-
-
-var deal = function (person){
-	var deckStart = Math.round(Math.random(deck)*((deck.length)-1));
-	console.log(deck[deckStart]);
-
-	person.push(deck[deckStart]);
-
-	deck.splice(deckStart,1);
-};
-
-var showCardPlayer = function () {
-	var parentDiv = document.getElementById("player");
-	var oldHand = parentDiv.getElementsByClassName("card-format");
-	while (oldHand[0]) {
-    	oldHand[0].parentNode.removeChild(oldHand[0]);
-    };	
-	for (var i = 0; i < playerCards.length; i ++){
-    	var newDiv = document.createElement('div');
-    	var newCard = playerCards[i].img;
-    	newDiv.innerHTML = newCard;
-    	newDiv.classList.add('hand-format');
-    	playerSection.appendChild(newDiv);
-	};
-};
-// http://stackoverflow.com/questions/13555785/remove-all-child-from-node-with-the-same-class-pure-js
-// got this from this source
-
-
-var showCardDealer = function () {
-	var parentDiv = document.getElementById("dealer");
-	var oldHand = parentDiv.getElementsByClassName("card-format");
-	while (oldHand[0]) {
-    	oldHand[0].parentNode.removeChild(oldHand[0]);
-    };	
-	for (var i = 0; i < dealerCards.length; i ++){
-    	var newDiv = document.createElement('div');
-    	var newCard = dealerCards[i].img;
-    	newDiv.innerHTML = newCard;
-    	newDiv.classList.add('hand-format');
-    	dealerSection.appendChild(newDiv);
-	};
-	parentDiv = document.getElementById("dealer");
-	cardDiv = parentDiv.getElementsByClassName("hand-format");
-	cardImage = cardDiv[0].getElementsByClassName("card-format");
-	cardImage[0].setAttribute("src", "https://s-media-cache-ak0.pinimg.com/236x/c1/59/b4/c159b4738dae9c9d8d6417228024de8d.jpg");
-};
-// Issue that if you add another card to the dealer's deck and then run function again, still have old divs but just empty; need to remove all together upfront
-
-
-var startGame = function () {
+var bet = function (){
+	playerBet = parseInt(document.querySelector('#amount').value);
+	console.log(playerBet);
 	pot = playerBet;
-	playerBank = playerBank - playerBet;
+	console.log(pot);
+	playerBank -= playerBet;
+	console.log(playerBank);
 
 	deal(dealerCards);
 	deal(playerCards);
@@ -181,11 +117,73 @@ var startGame = function () {
 	console.log(dealerBank);
 	console.log(pot);
 };
-console.log(startGame());
+var betButton = document.querySelector('#bet');
+betButton.addEventListener('click', bet);
 
-var startButton = document.querySelector('#start');
 
-startButton.addEventListener('click', startGame);
+
+var deal = function (person){
+	var deckStart = Math.round(Math.random(deck)*((deck.length)-1));
+	console.log(deck[deckStart]);
+	person.push(deck[deckStart]);
+	deck.splice(deckStart,1);
+};
+
+var showCardPlayer = function () {
+	var parentDiv = document.getElementById("player");
+	var oldHand = parentDiv.getElementsByClassName("card-format");
+	while (oldHand[0]) {
+    	oldHand[0].parentNode.removeChild(oldHand[0]);
+    };	
+	for (var i = 0; i < playerCards.length; i ++){
+    	var newDiv = document.createElement('div');
+    	var newCard = playerCards[i].img;
+    	newDiv.innerHTML = newCard;
+    	newDiv.classList.add('hand-format');
+    	playerSection.appendChild(newDiv);
+	};
+};
+// http://stackoverflow.com/questions/13555785/remove-all-child-from-node-with-the-same-class-pure-js
+// got this from this source
+
+
+var showCardDealer = function () {
+	var parentDiv = document.getElementById("dealer");
+	var oldHand = parentDiv.getElementsByClassName("card-format");
+	while (oldHand[0]) {
+    	oldHand[0].parentNode.removeChild(oldHand[0]);
+    };	
+	for (var i = 0; i < dealerCards.length; i ++){
+    	var newDiv = document.createElement('div');
+    	var newCard = dealerCards[i].img;
+    	newDiv.innerHTML = newCard;
+    	newDiv.classList.add('hand-format');
+    	dealerSection.appendChild(newDiv);
+	};
+	parentDiv = document.getElementById("dealer");
+	cardDiv = parentDiv.getElementsByClassName("hand-format");
+	cardImage = cardDiv[0].getElementsByClassName("card-format");
+	cardImage[0].setAttribute("src", "https://s-media-cache-ak0.pinimg.com/236x/c1/59/b4/c159b4738dae9c9d8d6417228024de8d.jpg");
+};
+// Issue that if you add another card to the dealer's deck and then run function again, still have old divs but just empty; need to remove all together upfront
+
+
+// var startGame = function () {
+
+// };
+// console.log(startGame());
+
+// var resetButton = document.querySelector('#reset');
+
+// resetButton.addEventListener('click', startGame);
+
+var resetGame = function (){
+	location.reload();
+	console.log("Reset");
+};
+var resetButton = document.querySelector('#reset');
+resetButton.addEventListener('click', resetGame);
+// DONE
 
 
 
@@ -220,32 +218,45 @@ var handleHit = function(event){
 
 	playerHandValue = newValue;
 	console.log(playerHandValue);
-	
+
 	showCardPlayer();
 
-	if (playerHandValue>21) {
-		pot = 0;
-		dealerBank +=playerBet;
-		console.log("Player Bust! Player hand is valued at "+playerHandValue);
+	for (var i = 0; i < playerCards.length; i++) {
+		var aceCount =0;
+		if (playerCards[i].name="Ace") {
+			aceCount += aceCount +1;
+			console.log(aceCount);
+		};
+	};
+	
+	playerAces = aceCount;
+	console.log(playerAces);
+
+	if (playerAces!==0 && playerHandValue>21) {
+		resetAcePlayer();
+		console.log(playerHandValue);
+		console.log("Player hand is valued at "+playerHandValue);
 	} else {
 		console.log("Player hand is valued at "+playerHandValue+". Stay or hit?");
-	}
+	};
 };
+
+
 var hitButton = document.querySelector('#hit');
 
 hitButton.addEventListener('click', handleHit);
 
 
-
 var testDealer = function() {
 	var newValue = 0;
-
 	for (var i = 0; i < dealerCards.length; i++) {
 		newValue = newValue + dealerCards[i].value;
-	}
-
+	};
 	dealerHandValue = newValue;
-	
+};
+
+var handleStay = function(event){
+	testDealer();
 	if (dealerHandValue>21) {
 		pot = 0;
 		playerBank +=playerBet +playerBet;
@@ -253,6 +264,9 @@ var testDealer = function() {
 		console.log("Dealer Bust / Player Wins! Dealer hand is valued at "+dealerHandValue+". Player has "+playerBank+" total");
 	
 	} else if (dealerHandValue<16) {
+		hit(dealerCards, dealerHandValue);
+		testDealer();
+		showCardDealer();
 		console.log("Dealer has "+dealerHandValue+" and therefore must hit");
 
 	} else {
@@ -269,9 +283,136 @@ var testDealer = function() {
 			pot = 0;
 			playerBank +=playerBet;
 			console.log("Draw. Player gets back bet");
-		}
-	}
+		};
+	};	
+
 };
+
+var stayButton = document.querySelector('#stay');
+
+stayButton.addEventListener('click', handleStay);
+
+
+
+
+
+
+
+
+var playerAces = 0;
+var newPlayerHandValue2 = 0;
+var newPlayerHandValue1 = 0;
+
+var resetAcePlayer = function () {
+	playerAces = 0;
+	playerHandValue = 0;
+	newPlayerHandValue2 = 0;
+	newPlayerHandValue1 = 0;
+
+	newValue = 0;
+	for (var i = 0; i < playerCards.length; i++) {
+		newValue = newValue + playerCards[i].value;
+	};
+
+	playerHandValue = newValue;
+	console.log(playerHandValue);
+
+	for (var i = 0; i < playerCards.length; i++) {
+		var aceCount =0;
+		if (playerCards[i].name="Ace") {
+			aceCount += aceCount +1;
+			console.log(aceCount);
+		};
+	};
+	playerAces = aceCount;
+	console.log(playerAces);
+
+	if (playerAces===0) {
+		playerHandValue = playerHandValue;
+		console.log(playerHandValue);
+	} else if (playerAces===1) {
+		newPlayerHandValue1 = playerHandValue - (playerAces*10);
+		console.log(playerHandValue1);
+	} else if (playerAces===2) {
+		newPlayerHandValue2 = playerHandValue - ((playerAces-1)*10);
+		console.log(playerHandValue2);
+		if (newPlayerHandValue2>21) {
+			newPlayerHandValue1 = playerHandValue - (playerAces*10);
+			console.log(playerHandValue1);
+		};
+	} else if (playerAces===3) {
+		newPlayerHandValue2 = playerHandValue - ((playerAces-1)*10);
+		console.log(playerHandValue2);
+		if (newPlayerHandValue2>21) {
+			newPlayerHandValue1 = playerHandValue - (playerAces*10);
+			console.log(playerHandValue1);
+		};
+	} else if (playerAces===4) {
+		newPlayerHandValue2 = playerHandValue - ((playerAces-1)*10);
+		console.log(playerHandValue2);
+		if (newPlayerHandValue2>21) {
+			newPlayerHandValue1 = playerHandValue - (playerAces*10);
+			console.log(playerHandValue1);
+		};
+	};
+
+	if (playerAces===0 && playerHandValue>21) {
+		playerHandValue = playerHandValue;
+		console.log(playerHandValue);
+	};
+	if (playerAces===1 && playerHandValue>21) {
+		playerHandValue = newPlayerHandValue2;
+		console.log(playerHandValue);
+	} else{
+		playerHandValue = playerHandValue;
+		console.log(playerHandValue);
+	};
+	if (playerAces===2 && newPlayerHandValue2>21) {
+		playerHandValue = newPlayerHandValue1;
+		console.log(playerHandValue);
+	} else{
+		playerHandValue = playerHandValue;
+		console.log(playerHandValue);
+	};
+	if (playerAces===3 && newPlayerHandValue1>21) {
+		playerHandValue = newPlayerHandValue1;
+		console.log(playerHandValue);
+	} else{
+		playerHandValue = playerHandValue;
+		console.log(playerHandValue);
+	};
+};
+
+// Problem if bust over 21 and Ace not last card in set, will reset to zero
+
+
+
+
+
+
+// FOR T
+var deposit = function () {
+	// pot = 0;
+	// dealerBank +=playerBet;
+
+	// var playerBankTotal = document.createElement('p');
+	// playerBankTotal = "Player currently has "+playerBank;
+	// playerBankTotal.classList.add('bank');
+	// playerSection.appendChild(playerBankTotal);
+
+	// var dealerBankTotal = dealerSection.querySelector("p");
+	// dealerBankTotal.textContent("Dealer currently has "+dealerBank);
+	// dealerBankTotal.classList.add('bank');
+};
+
+var bankButton = document.querySelector('#bank');
+
+bankButton.addEventListener('click', deposit);
+
+
+
+
+
 
 var dealerAces = 0;
 
@@ -309,73 +450,6 @@ var resetAceDealer = function () {
 		dealerHandValue = dealerHandValue;
 	};
 };
-
-var playerAces = 0;
-var newPlayerHandValue2 = 0;
-var newPlayerHandValue1 = 0;
-
-
-var resetAcePlayer = function () {
-	for (var i = 0; i < playerCards.length; i++) {
-		var aceCount =0;
-		if (playerCards[i].name="Ace") {
-			aceCount += aceCount +1;
-		};
-	};
-	playerAces =aceCount;
-	playerHandValue = playerHandValue - playerAces*10;
-
-	if (playerAces===1) {
-		newPlayerHandValue1 = playerHandValue - (playerAces*10);
-	} else if (playerAces===2) {
-		newPlayerHandValue2 = playerHandValue - ((playerAces-1)*10);
-		if (newPlayerHandValue2>21) {
-			newPlayerHandValue1 = playerHandValue - (playerAces*10);
-		};
-	} else if (playerAces===3) {
-		newPlayerHandValue2 = playerHandValue - ((playerAces-1)*10);
-		if (newPlayerHandValue2>21) {
-			newPlayerHandValue1 = playerHandValue - (playerAces*10);
-		};
-	} else if (playerAces===4) {
-		newPlayerHandValue2 = playerHandValue - ((playerAces-1)*10);
-		if (newPlayerHandValue2>21) {
-			newPlayerHandValue1 = playerHandValue - (playerAces*10);
-		};
-	};
-	if (playerHandValue>21) {
-		playerHandValue = newPlayerHandValue2;
-	} else{
-		playerHandValue = playerHandValue;
-	};
-	if (newPlayerHandValue2>21) {
-		playerHandValue = newPlayerHandValue1;
-	} else{
-		playerHandValue = playerHandValue;
-	};
-	if (newPlayerHandValue1>21) {
-		playerHandValue = newPlayerHandValue1;
-	} else{
-		playerHandValue = playerHandValue;
-	};
-};
-
-// Only run this is playerHandValue>21
-
-
-
-
-
-
-var stayButton = document.querySelector('#stay');
-
-var handleStay = function(event){
-
-};
-// This is where everything for the dealer will kick off after the player has agreed to hit
-
-
-
 
 
 
