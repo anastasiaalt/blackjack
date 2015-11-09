@@ -30,10 +30,6 @@ li {
 	color: white;
 }
 
-img {
-	height: 500 px;
-	width: 25%;
-}
 
 #headline-background {
 	background-color: rgb(240,249,254);
@@ -57,3 +53,9 @@ img {
 	width: 150px;
 }
 
+.card-format {
+	height: 500 px;
+	width: 100%;
+	margin: 0 auto;
+	display: inline-block;
+}

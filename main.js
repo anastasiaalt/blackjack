@@ -295,6 +295,7 @@ var showCardPlayerE = function () {
     	var newDiv = document.createElement('div');
     	var newCard = playerCards[i].img;
     	newDiv.innerHTML = newCard;
+    	newDiv.classList.add('card-format');
     	playerSection.appendChild(newDiv);
 	};
 };
