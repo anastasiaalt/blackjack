@@ -290,14 +290,12 @@ var resetAce = function () {
 // That's where you insert the function, don't need to test the hand at that pt
 // Reset the hand value
 
-var showCardPlayerE = function () {
+var showCardPlayer = function () {
 	var parentDiv = document.getElementById("player");
 	var oldHand = parentDiv.getElementsByClassName("card-format");
-
 	while (oldHand[0]) {
     	oldHand[0].parentNode.removeChild(oldHand[0]);
     };	
-
 	for (var i = 0; i < playerCards.length; i ++){
     	var newDiv = document.createElement('div');
     	var newCard = playerCards[i].img;
@@ -306,3 +304,24 @@ var showCardPlayerE = function () {
     	playerSection.appendChild(newDiv);
 	};
 };
+// http://stackoverflow.com/questions/13555785/remove-all-child-from-node-with-the-same-class-pure-js
+// got this from this source
+
+
+var showCardDealer = function () {
+	var parentDiv = document.getElementById("dealer");
+	var oldHand = parentDiv.getElementsByClassName("card-format");
+	while (oldHand[0]) {
+    	oldHand[0].parentNode.removeChild(oldHand[0]);
+    };	
+	for (var i = 0; i < dealerCards.length; i ++){
+    	var newDiv = document.createElement('div');
+    	var newCard = dealerCards[i].img;
+    	newDiv.innerHTML = newCard;
+    	newDiv.classList.add('hand-format');
+    	dealerSection.appendChild(newDiv);
+	};
+};
+
+
+

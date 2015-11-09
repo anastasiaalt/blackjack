@@ -63,3 +63,13 @@ li {
 .hand-format {
 	display: inline-block;
 }
+
+#hide-card{
+	height: 500 px;
+	width: 100%;
+	margin: 0 auto;
+	display: inline-block;
+	background: url(https://s-media-cache-ak0.pinimg.com/236x/c1/59/b4/c159b4738dae9c9d8d6417228024de8d.jpg);
+	background-size: cover;
+	background-repeat: repeat;
+}
