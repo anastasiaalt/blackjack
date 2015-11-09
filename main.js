@@ -15,7 +15,7 @@ var playerBet = 20;
 
 
 var deck = [
-	{name: "2", value: 2, suit: "Hearts", img: '<img class="card-format" src="url(xhttp://www.kemplen.co.uk/sk329858/2h.jpg">'}, 
+	{name: "2", value: 2, suit: "Hearts", img: '<img class="card-format" src="http://www.kemplen.co.uk/sk329858/2h.jpg">'}, 
 	{name: "3", value: 3, suit: "Hearts", img: '<img class="card-format" src="http://40.media.tumblr.com/tumblr_m2mi0u9XIT1qhqtgyo1_1280.jpg">'},
 	{name: "4", value: 4, suit: "Hearts", img: '<img class="card-format" src="https://c1.staticflickr.com/9/8457/7928243828_4b5e83a3ac_b.jpg">'},
 	{name: "5", value: 5, suit: "Hearts", img: '<img class="card-format" src="https://s-media-cache-ak0.pinimg.com/736x/95/71/76/957176a70ca9447e6fbedf4cf0f17b8b.jpg">'},
@@ -321,6 +321,10 @@ var showCardDealer = function () {
     	newDiv.classList.add('hand-format');
     	dealerSection.appendChild(newDiv);
 	};
+	parentDiv = document.getElementById("dealer");
+	cardDiv = parentDiv.getElementsByClassName("hand-format");
+	cardImage = cardDiv[0].getElementsByClassName("card-format");
+	cardImage[0].setAttribute("src", "https://s-media-cache-ak0.pinimg.com/236x/c1/59/b4/c159b4738dae9c9d8d6417228024de8d.jpg");
 };
 
 
