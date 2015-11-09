@@ -1,10 +1,14 @@
 console.log("Hello World");
 
+var landingCard = document.querySelector('#landing-card');
+
 var dealerSection = document.querySelector('#dealer');
+var dealerStatus = document.querySelector('#status-dealer');
 var dealerCards = [];
 var dealerHandValue = 0;
 
 var playerSection = document.querySelector('#player');
+var playerStatus = document.querySelector('#status-player');
 var playerCards = [];
 var playerHandValue = 0;
 
@@ -68,7 +72,17 @@ var deck = [
 	{name: "Ace", value: 11, suit: "Diamonds", img: '<img class="card-format" src="http://www.11betties.org/wp-content/uploads/2013/09/Ace-Diamonds-Playing-Card-Illustration-by-Jonathan-Burton.jpg">'},	
 ];
 
+
+var deal = function (person){
+	var deckStart = Math.round(Math.random(deck)*((deck.length)-1));
+	console.log(deck[deckStart]);
+	person.push(deck[deckStart]);
+	deck.splice(deckStart,1);
+};
+
 var bet = function (){
+	landingCard.src = "";
+
 	playerBet = parseInt(document.querySelector('#amount').value);
 	console.log(playerBet);
 	pot = playerBet;
@@ -99,20 +113,29 @@ var bet = function (){
 	if (dealerHandValue === 21 && playerHandValue === 21) {
 			pot=0;
 			playerBank += playerBet;
-		console.log("Push. Dealer and player both have 21.");
+			dealerStatus.textContent = "Push. Dealer hand is valued at "+dealerHandValue;
+			playerStatus.textContent = "Push. Player hand is valued at "+playerHandValue;
+			console.log("Push. Dealer and player both have 21.");
 
 		} else if (dealerHandValue === 21) {
 			pot = 0;
 			dealerBank +=playerBet;
+			dealerStatus.textContent = "Dealer BlackJack. Dealer hand is valued at "+dealerHandValue;
+			playerStatus.textContent = "Player loses. Player hand is valued at "+playerHandValue;
 			console.log("Dealer has blackjack. Player loses.");
 		} else if (playerHandValue === 21) {	
 			pot = 0;
 			playerBank += playerBet + (1.5*playerBet);
 			dealerBank -=(1.5*playerBet);
+			dealerStatus.textContent = "Dealer loses. Dealer hand is valued at "+dealerHandValue;
+			playerStatus.textContent = "Player BlackJack. Player hand is valued at "+playerHandValue;
 			console.log("Player has blackjack. Player wins.");
 		}
 	showCardPlayer();
 	showCardDealer();
+	
+	playerStatus.textContent = "Player hand is valued at "+playerHandValue;
+
 	console.log(playerBank);
 	console.log(dealerBank);
 	console.log(pot);
@@ -120,14 +143,6 @@ var bet = function (){
 var betButton = document.querySelector('#bet');
 betButton.addEventListener('click', bet);
 
-
-
-var deal = function (person){
-	var deckStart = Math.round(Math.random(deck)*((deck.length)-1));
-	console.log(deck[deckStart]);
-	person.push(deck[deckStart]);
-	deck.splice(deckStart,1);
-};
 
 var showCardPlayer = function () {
 	var parentDiv = document.getElementById("player");
@@ -167,15 +182,6 @@ var showCardDealer = function () {
 };
 // Issue that if you add another card to the dealer's deck and then run function again, still have old divs but just empty; need to remove all together upfront
 
-
-// var startGame = function () {
-
-// };
-// console.log(startGame());
-
-// var resetButton = document.querySelector('#reset');
-
-// resetButton.addEventListener('click', startGame);
 
 var resetGame = function (){
 	location.reload();
@@ -234,9 +240,11 @@ var handleHit = function(event){
 
 	if (playerAces!==0 && playerHandValue>21) {
 		resetAcePlayer();
+		playerStatus.textContent = "Player hand is valued at "+playerHandValue;
 		console.log(playerHandValue);
 		console.log("Player hand is valued at "+playerHandValue);
 	} else {
+		playerStatus.textContent = "Player hand is valued at "+playerHandValue+". Stay or hit?";
 		console.log("Player hand is valued at "+playerHandValue+". Stay or hit?");
 	};
 };
@@ -247,12 +255,37 @@ var hitButton = document.querySelector('#hit');
 hitButton.addEventListener('click', handleHit);
 
 
+var reveal = function () {
+	var revealName = dealerCards[0].name;
+	var revealSuit = dealerCards[0].suit;
+
+	var nameArray = [];
+
+	for (var i = 0; i < deckReference.length; i++) {
+		if (revealName===deckReference[i].name) {
+			nameArray.push(deckReference[i]);
+		};
+	};
+
+	for (var i = 0; i < nameArray.length; i++) {
+		if (revealSuit===nameArray[i].suit) {
+			return nameArray[i].img;
+		};
+	};
+};
+
+
+
+
+
+
 var testDealer = function() {
 	var newValue = 0;
 	for (var i = 0; i < dealerCards.length; i++) {
 		newValue = newValue + dealerCards[i].value;
 	};
 	dealerHandValue = newValue;
+	dealerStatus.textContent = "Dealer hand is valued at "+dealerHandValue;
 };
 
 var handleStay = function(event){
@@ -261,27 +294,51 @@ var handleStay = function(event){
 		pot = 0;
 		playerBank +=playerBet +playerBet;
 		dealerBank -=playerBet;
+		dealerStatus.textContent = "Dealer Bust / Player Wins! Dealer hand is valued at "+dealerHandValue+". Player has "+playerBank+" total";
 		console.log("Dealer Bust / Player Wins! Dealer hand is valued at "+dealerHandValue+". Player has "+playerBank+" total");
 	
 	} else if (dealerHandValue<16) {
 		hit(dealerCards, dealerHandValue);
 		testDealer();
 		showCardDealer();
+		dealerStatus.textContent = "Dealer has "+dealerHandValue+" and therefore must hit";
 		console.log("Dealer has "+dealerHandValue+" and therefore must hit");
 
 	} else {
 		if (dealerHandValue>playerHandValue) {
 			pot = 0;
 			dealerBank +=playerBet;
+			dealerCards[0].img = reveal();
+			var firstDiv = document.querySelector('.card-format');
+			// Need to remove the first <img> all together
+			// Could also state this as remove the first thing with the class format
+			firstDiv.innerHTML = dealerCards[0].img;
+			
+			dealerStatus.textContent = "Dealer wins. Dealer hand is valued at "+dealerHandValue;
+			playerStatus.textContent = "Player loses. Player hand is valued at "+playerHandValue;
 			console.log("Player loses");
 		} else if (dealerHandValue<playerHandValue) {
 			pot = 0;
 			dealerBank -=playerBet;
 			playerBank +=playerBet +playerBet;
+			dealerCards[0].img = reveal();
+			var firstDiv = document.querySelector('.card-format');
+			firstDiv.innerHTML = "";
+			firstDiv.innerHTML = dealerCards[0].img;
+			
+			dealerStatus.textContent = "Dealer loses. Dealer hand is valued at "+dealerHandValue;
+			playerStatus.textContent = "Player wins. Player hand is valued at "+playerHandValue;
 			console.log("Player wins");
 		} else {
 			pot = 0;
 			playerBank +=playerBet;
+			dealerCards[0].img = reveal();
+			var firstDiv = document.querySelector('.card-format');
+			firstDiv.innerHTML = "";
+			firstDiv.innerHTML = dealerCards[0].img;
+
+			dealerStatus.textContent = "Push. Dealer hand is valued at "+dealerHandValue;
+			playerStatus.textContent = "Push. Player hand is valued at "+playerHandValue;
 			console.log("Draw. Player gets back bet");
 		};
 	};	
