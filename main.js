@@ -97,6 +97,45 @@ var deal = function (person){
 	deck.splice(deckStart,1);
 };
 
+var showCardPlayer = function () {
+	var parentDiv = document.getElementById("player");
+	var oldHand = parentDiv.getElementsByClassName("card-format");
+	while (oldHand[0]) {
+    	oldHand[0].parentNode.removeChild(oldHand[0]);
+    };	
+	for (var i = 0; i < playerCards.length; i ++){
+    	var newDiv = document.createElement('div');
+    	var newCard = playerCards[i].img;
+    	newDiv.innerHTML = newCard;
+    	newDiv.classList.add('hand-format');
+    	playerSection.appendChild(newDiv);
+	};
+};
+// http://stackoverflow.com/questions/13555785/remove-all-child-from-node-with-the-same-class-pure-js
+// got this from this source
+
+
+var showCardDealer = function () {
+	var parentDiv = document.getElementById("dealer");
+	var oldHand = parentDiv.getElementsByClassName("card-format");
+	while (oldHand[0]) {
+    	oldHand[0].parentNode.removeChild(oldHand[0]);
+    };	
+	for (var i = 0; i < dealerCards.length; i ++){
+    	var newDiv = document.createElement('div');
+    	var newCard = dealerCards[i].img;
+    	newDiv.innerHTML = newCard;
+    	newDiv.classList.add('hand-format');
+    	dealerSection.appendChild(newDiv);
+	};
+	parentDiv = document.getElementById("dealer");
+	cardDiv = parentDiv.getElementsByClassName("hand-format");
+	cardImage = cardDiv[0].getElementsByClassName("card-format");
+	cardImage[0].setAttribute("src", "https://s-media-cache-ak0.pinimg.com/236x/c1/59/b4/c159b4738dae9c9d8d6417228024de8d.jpg");
+};
+// Issue that if you add another card to the dealer's deck and then run function again, still have old divs but just empty; need to remove all together upfront
+
+
 var startGame = function () {
 	pot = playerBet;
 	playerBank = playerBank - playerBet;
@@ -136,6 +175,8 @@ var startGame = function () {
 			dealerBank -=(1.5*playerBet);
 			console.log("Player has blackjack. Player wins.");
 		}
+	showCardPlayer();
+	showCardDealer();
 	console.log(playerBank);
 	console.log(dealerBank);
 	console.log(pot);
@@ -167,33 +208,10 @@ var hit = function(cards, handValue) {
 };
 
 
-
-
-var hitButton = document.querySelector('#hit');
-
 var handleHit = function(event){
 	hit(playerCards, playerHandValue);
 	console.log('click');
-	testPlayer
-};
-
-hitButton.addEventListener('click', handleHit);
-
-var stayButton = document.querySelector('#stay');
-
-
-
-
-var handleStay = function(event){
-
-};
-// This is where everything for the dealer will kick off after the player has agreed to hit
-
-
-
-
-
-var testPlayer = function() {
+	
 	var newValue = 0;
 
 	for (var i = 0; i < playerCards.length; i++) {
@@ -201,6 +219,9 @@ var testPlayer = function() {
 	}
 
 	playerHandValue = newValue;
+	console.log(playerHandValue);
+	
+	showCardPlayer();
 
 	if (playerHandValue>21) {
 		pot = 0;
@@ -210,6 +231,23 @@ var testPlayer = function() {
 		console.log("Player hand is valued at "+playerHandValue+". Stay or hit?");
 	}
 };
+var hitButton = document.querySelector('#hit');
+
+hitButton.addEventListener('click', handleHit);
+
+
+
+
+var stayButton = document.querySelector('#stay');
+
+var handleStay = function(event){
+
+};
+// This is where everything for the dealer will kick off after the player has agreed to hit
+
+
+
+
 
 
 
@@ -289,43 +327,6 @@ var resetAce = function () {
 // You only need to run this check as a final check in the event that it appears to be a bust of +21
 // That's where you insert the function, don't need to test the hand at that pt
 // Reset the hand value
-
-var showCardPlayer = function () {
-	var parentDiv = document.getElementById("player");
-	var oldHand = parentDiv.getElementsByClassName("card-format");
-	while (oldHand[0]) {
-    	oldHand[0].parentNode.removeChild(oldHand[0]);
-    };	
-	for (var i = 0; i < playerCards.length; i ++){
-    	var newDiv = document.createElement('div');
-    	var newCard = playerCards[i].img;
-    	newDiv.innerHTML = newCard;
-    	newDiv.classList.add('hand-format');
-    	playerSection.appendChild(newDiv);
-	};
-};
-// http://stackoverflow.com/questions/13555785/remove-all-child-from-node-with-the-same-class-pure-js
-// got this from this source
-
-
-var showCardDealer = function () {
-	var parentDiv = document.getElementById("dealer");
-	var oldHand = parentDiv.getElementsByClassName("card-format");
-	while (oldHand[0]) {
-    	oldHand[0].parentNode.removeChild(oldHand[0]);
-    };	
-	for (var i = 0; i < dealerCards.length; i ++){
-    	var newDiv = document.createElement('div');
-    	var newCard = dealerCards[i].img;
-    	newDiv.innerHTML = newCard;
-    	newDiv.classList.add('hand-format');
-    	dealerSection.appendChild(newDiv);
-	};
-	parentDiv = document.getElementById("dealer");
-	cardDiv = parentDiv.getElementsByClassName("hand-format");
-	cardImage = cardDiv[0].getElementsByClassName("card-format");
-	cardImage[0].setAttribute("src", "https://s-media-cache-ak0.pinimg.com/236x/c1/59/b4/c159b4738dae9c9d8d6417228024de8d.jpg");
-};
 
 
 
