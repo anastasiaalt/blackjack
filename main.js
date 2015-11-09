@@ -310,6 +310,11 @@ var handleStay = function(event){
 			dealerBank +=playerBet;
 			dealerCards[0].img = reveal();
 			var firstDiv = document.querySelector('.card-format');
+			firstDiv.innerHTML = "";
+			firstDiv.innerHTML = dealerCards[0].img;
+
+
+			// image_x.parentNode.removeChild(image_x);
 			// Need to remove the first <img> all together
 			// Could also state this as remove the first thing with the class format
 			firstDiv.innerHTML = dealerCards[0].img;
