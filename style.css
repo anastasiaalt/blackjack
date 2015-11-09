@@ -59,3 +59,7 @@ li {
 	margin: 0 auto;
 	display: inline-block;
 }
+
+.hand-format {
+	display: inline-block;
+}
