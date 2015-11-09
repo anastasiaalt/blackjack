@@ -291,6 +291,13 @@ var resetAce = function () {
 // Reset the hand value
 
 var showCardPlayerE = function () {
+	var parentDiv = document.getElementById("player");
+	var oldHand = parentDiv.getElementsByClassName("card-format");
+
+	while (oldHand[0]) {
+    	oldHand[0].parentNode.removeChild(oldHand[0]);
+    };	
+
 	for (var i = 0; i < playerCards.length; i ++){
     	var newDiv = document.createElement('div');
     	var newCard = playerCards[i].img;
