@@ -1,8 +1,10 @@
 console.log("Hello World");
 
+var dealerSection = document.querySelector('#dealer');
 var dealerCards = [];
 var dealerHandValue = 0;
 
+var playerSection = document.querySelector('#player');
 var playerCards = [];
 var playerHandValue = 0;
 
@@ -292,7 +294,14 @@ var resetAce = function () {
 
 
 
-
+var showCard = function (cards) {
+	for (var i = 0; i < cards.length; i ++){
+    	var newCard = document.createElement('div');
+    	newCard = cards[i].img;
+    	newCard.classList.add('card-format');
+    	playerSection.appendChild(newCard);
+	};
+};
 
 
 

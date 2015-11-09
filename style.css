@@ -51,3 +51,8 @@ li {
 #amount {
 	width: 150px;
 }
+
+.card-format {
+	height: 500 px;
+	width: 25%;
+}
