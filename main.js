@@ -1,4 +1,4 @@
-console.log("Hello World");
+console.log("Hello WORLD");
 
 var landingCard = document.querySelector('#landing-card');
 
@@ -269,7 +269,7 @@ var reveal = function () {
 
 	for (var z = 0; z < nameArray.length; z++) {
 		if (revealSuit===nameArray[z].suit) {
-			return nameArray[i].img;
+			return nameArray[z].img;
 		}
 	}
 };
@@ -309,15 +309,14 @@ var handleStay = function(event){
 			pot = 0;
 			dealerBank +=playerBet;
 			dealerCards[0].img = reveal();
+			var newImg = reveal();
+			var dealerElement = document.querySelectorAll('.hand-format')[0];
+			console.log(dealerElement);
 			var firstDiv = document.querySelector('.card-format');
-			firstDiv.innerHTML = "";
-			firstDiv.innerHTML = dealerCards[0].img;
-
-
-			// image_x.parentNode.removeChild(image_x);
-			// Need to remove the first <img> all together
-			// Could also state this as remove the first thing with the class format
-			firstDiv.innerHTML = dealerCards[0].img;
+			dealerElement.removeChild(firstDiv);
+			// firstDiv.innerHTML = "";
+			console.log(reveal());
+			dealerElement.innerHTML = newImg;
 			
 			dealerStatus.textContent = "Dealer wins. Dealer hand is valued at "+dealerHandValue;
 			playerStatus.textContent = "Player loses. Player hand is valued at "+playerHandValue;
@@ -327,9 +326,16 @@ var handleStay = function(event){
 			dealerBank -=playerBet;
 			playerBank +=playerBet +playerBet;
 			dealerCards[0].img = reveal();
+			var newImg = reveal();
+			var dealerElement = document.querySelectorAll('.hand-format')[0];
+			console.log(dealerElement);
 			var firstDiv = document.querySelector('.card-format');
-			firstDiv.innerHTML = "";
-			firstDiv.innerHTML = dealerCards[0].img;
+			dealerElement.removeChild(firstDiv);
+			// firstDiv.innerHTML = "";
+			console.log(reveal());
+			dealerElement.innerHTML = newImg;
+
+			// firstDiv.innerHTML = dealerCards[0].img;
 			
 			dealerStatus.textContent = "Dealer loses. Dealer hand is valued at "+dealerHandValue;
 			playerStatus.textContent = "Player wins. Player hand is valued at "+playerHandValue;
@@ -338,9 +344,17 @@ var handleStay = function(event){
 			pot = 0;
 			playerBank +=playerBet;
 			dealerCards[0].img = reveal();
+			var newImg = reveal();
+			var dealerElement = document.querySelectorAll('.hand-format')[0];
+			console.log(dealerElement);
 			var firstDiv = document.querySelector('.card-format');
-			firstDiv.innerHTML = "";
-			firstDiv.innerHTML = dealerCards[0].img;
+			dealerElement.removeChild(firstDiv);
+			// firstDiv.innerHTML = "";
+			console.log(reveal());
+			dealerElement.innerHTML = newImg;
+
+
+			
 
 			dealerStatus.textContent = "Push. Dealer hand is valued at "+dealerHandValue;
 			playerStatus.textContent = "Push. Player hand is valued at "+playerHandValue;
