@@ -180,7 +180,7 @@ var showCardDealer = function () {
 	cardImage = cardDiv[0].getElementsByClassName("card-format");
 	cardImage[0].setAttribute("src", "https://s-media-cache-ak0.pinimg.com/236x/c1/59/b4/c159b4738dae9c9d8d6417228024de8d.jpg");
 };
-// Issue that if you add another card to the dealer's deck and then run function again, still have old divs but just empty; need to remove all together upfront
+// Attribute issue but works
 
 
 var resetGame = function (){
@@ -189,8 +189,6 @@ var resetGame = function (){
 };
 var resetButton = document.querySelector('#reset');
 resetButton.addEventListener('click', resetGame);
-// DONE
-
 
 
 var hit = function(cards, handValue) {
@@ -240,7 +238,7 @@ var handleHit = function(event){
 
 	if (playerAces!==0 && playerHandValue>21) {
 		resetAcePlayer();
-		playerStatus.textContent = "Player hand is valued at "+playerHandValue;
+		playerStatus.textContent = "Player loses. Player hand is valued at "+playerHandValue;
 		console.log(playerHandValue);
 		console.log("Player hand is valued at "+playerHandValue);
 	} else {
@@ -275,10 +273,6 @@ var reveal = function () {
 };
 
 
-
-
-
-
 var testDealer = function() {
 	var newValue = 0;
 	for (var i = 0; i < dealerCards.length; i++) {
@@ -287,6 +281,7 @@ var testDealer = function() {
 	dealerHandValue = newValue;
 	dealerStatus.textContent = "Dealer hand is valued at "+dealerHandValue;
 };
+
 
 var handleStay = function(event){
 	testDealer();
@@ -369,21 +364,16 @@ var stayButton = document.querySelector('#stay');
 stayButton.addEventListener('click', handleStay);
 
 
-
-
-
-
-
-
 var playerAces = 0;
 var newPlayerHandValue2 = 0;
 var newPlayerHandValue1 = 0;
 
+
 var resetAcePlayer = function () {
-	playerAces = 0;
-	playerHandValue = 0;
 	newPlayerHandValue2 = 0;
 	newPlayerHandValue1 = 0;
+	playerAces = 0;
+	playerHandValue = 0;
 
 	newValue = 0;
 	for (var i = 0; i < playerCards.length; i++) {
@@ -395,7 +385,7 @@ var resetAcePlayer = function () {
 
 	for (var a = 0; a < playerCards.length; a++) {
 		var aceCount =0;
-		if (playerCards[a].name="Ace") {
+		if (playerCards[a].name==="Ace") {
 			aceCount += aceCount +1;
 			console.log(aceCount);
 		}
@@ -463,68 +453,40 @@ var resetAcePlayer = function () {
 
 
 
-
-
-
-// FOR T
-var deposit = function () {
-	// pot = 0;
-	// dealerBank +=playerBet;
-
-	// var playerBankTotal = document.createElement('p');
-	// playerBankTotal = "Player currently has "+playerBank;
-	// playerBankTotal.classList.add('bank');
-	// playerSection.appendChild(playerBankTotal);
-
-	// var dealerBankTotal = dealerSection.querySelector("p");
-	// dealerBankTotal.textContent("Dealer currently has "+dealerBank);
-	// dealerBankTotal.classList.add('bank');
-};
-
-var bankButton = document.querySelector('#bank');
-
-bankButton.addEventListener('click', deposit);
-
-
-
-
-
-
 var dealerAces = 0;
 
 var aceDealer = function() {
-	for (var i = 0; i < dealerCards.length; i++) {
-		var aceCount =0;
-		if (dealerCards[i].name="Ace") {
-			aceCount += aceCount +1;
-		}
-	//Want to get the number of aces and then see if hand value options with a=1 is <21 
-	}
-	dealerAces =aceCount;
-	dealerHandValue = dealerHandValue - dealerAces*10;
+	// for (var i = 0; i < dealerCards.length; i++) {
+	// 	var aceCount =0;
+	// 	if (dealerCards[i].name="Ace") {
+	// 		aceCount += aceCount +1;
+	// 	}
+	// }
+	// dealerAces =aceCount;
+	// dealerHandValue = dealerHandValue - dealerAces*10;
 };
 
 var resetAceDealer = function () {
-	if (dealerAces===1) {
-		dealerHandValue = dealerHandValue - (dealerAces*10);
-	} else if (dealerAces===2) {
-		dealerHandValue = dealerHandValue - ((dealerAces-1)*10);
-		if (dealerHandValue>21) {
-			dealerHandValue = dealerHandValue - (dealerAces*10);
-		}
-	} else if (dealerAces===3) {
-		dealerHandValue = dealerHandValue - ((dealerAces-1)*10);
-		if (dealerHandValue>21) {
-			dealerHandValue = dealerHandValue - (dealerAces*10);
-		}
-	} else if (dealerAces===4) {
-		dealerHandValue = dealerHandValue - ((dealerAces-1)*10);
-		if (dealerHandValue>21) {
-			dealerHandValue = dealerHandValue - (dealerAces*10);
-		}
-	} else {
-		dealerHandValue = dealerHandValue;
-	}
+	// if (dealerAces===1) {
+	// 	dealerHandValue = dealerHandValue - (dealerAces*10);
+	// } else if (dealerAces===2) {
+	// 	dealerHandValue = dealerHandValue - ((dealerAces-1)*10);
+	// 	if (dealerHandValue>21) {
+	// 		dealerHandValue = dealerHandValue - (dealerAces*10);
+	// 	}
+	// } else if (dealerAces===3) {
+	// 	dealerHandValue = dealerHandValue - ((dealerAces-1)*10);
+	// 	if (dealerHandValue>21) {
+	// 		dealerHandValue = dealerHandValue - (dealerAces*10);
+	// 	}
+	// } else if (dealerAces===4) {
+	// 	dealerHandValue = dealerHandValue - ((dealerAces-1)*10);
+	// 	if (dealerHandValue>21) {
+	// 		dealerHandValue = dealerHandValue - (dealerAces*10);
+	// 	}
+	// } else {
+	// 	dealerHandValue = dealerHandValue;
+	// }
 };
 
 

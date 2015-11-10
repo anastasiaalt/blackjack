@@ -1,7 +1,3 @@
-/*Card Deck thoughts?*/
-/*https://openclipart.org/download/175410/guyenne-classic.svg*/
-
-
 @import url(https://fonts.googleapis.com/css?family=Oswald:400,300);
 
 body {
@@ -45,13 +41,11 @@ h3 {
 	height: 500 px;
 	width: 100%;
 }
-/*Not getting wide enough for cards*/
 
 #player {
 	height: 500 px;
 	width: 100%;
 }
-/*Not getting wide enough for cards*/
 
 #amount {
 	width: 150px;
@@ -96,7 +90,6 @@ h3 {
 	color: rgb(3,0,85);
 	text-align: center;
 }
-
 
 #landing-card{
 	height: 250px;
