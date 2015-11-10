@@ -105,8 +105,8 @@ var bet = function (){
 	}
 	playerHandValue = newPlayerValue;
 
-	for (var i = 0; i < dealerCards.length; i++) {
-		newDealerValue = newDealerValue + dealerCards[i].value;
+	for (var x = 0; x < dealerCards.length; x++) {
+		newDealerValue = newDealerValue + dealerCards[x].value;
 	}
 	dealerHandValue = newDealerValue;
 
@@ -149,14 +149,14 @@ var showCardPlayer = function () {
 	var oldHand = parentDiv.getElementsByClassName("card-format");
 	while (oldHand[0]) {
     	oldHand[0].parentNode.removeChild(oldHand[0]);
-    };	
+    }	
 	for (var i = 0; i < playerCards.length; i ++){
     	var newDiv = document.createElement('div');
     	var newCard = playerCards[i].img;
     	newDiv.innerHTML = newCard;
     	newDiv.classList.add('hand-format');
     	playerSection.appendChild(newDiv);
-	};
+	}
 };
 // http://stackoverflow.com/questions/13555785/remove-all-child-from-node-with-the-same-class-pure-js
 // got this from this source
@@ -167,14 +167,14 @@ var showCardDealer = function () {
 	var oldHand = parentDiv.getElementsByClassName("card-format");
 	while (oldHand[0]) {
     	oldHand[0].parentNode.removeChild(oldHand[0]);
-    };	
+    }	
 	for (var i = 0; i < dealerCards.length; i ++){
     	var newDiv = document.createElement('div');
     	var newCard = dealerCards[i].img;
     	newDiv.innerHTML = newCard;
     	newDiv.classList.add('hand-format');
     	dealerSection.appendChild(newDiv);
-	};
+	}
 	parentDiv = document.getElementById("dealer");
 	cardDiv = parentDiv.getElementsByClassName("hand-format");
 	cardImage = cardDiv[0].getElementsByClassName("card-format");
@@ -194,7 +194,7 @@ resetButton.addEventListener('click', resetGame);
 
 
 var hit = function(cards, handValue) {
-	console.log(cards, handValue)
+	console.log(cards, handValue);
 	var deckStart = Math.round(Math.random(deck)*((deck.length)-1));
 	console.log(deck[deckStart]);
 
@@ -206,7 +206,7 @@ var hit = function(cards, handValue) {
 
 	for (var i = 0; i < cards.length; i++) {
 		newValue = newValue + cards[i].value;
-	};
+	}
 
 	handValue = newValue;
 };
@@ -227,13 +227,13 @@ var handleHit = function(event){
 
 	showCardPlayer();
 
-	for (var i = 0; i < playerCards.length; i++) {
+	for (var y = 0; y < playerCards.length; y++) {
 		var aceCount =0;
-		if (playerCards[i].name="Ace") {
+		if (playerCards[y].name="Ace") {
 			aceCount += aceCount +1;
 			console.log(aceCount);
-		};
-	};
+		}
+	}
 	
 	playerAces = aceCount;
 	console.log(playerAces);
@@ -246,7 +246,7 @@ var handleHit = function(event){
 	} else {
 		playerStatus.textContent = "Player hand is valued at "+playerHandValue+". Stay or hit?";
 		console.log("Player hand is valued at "+playerHandValue+". Stay or hit?");
-	};
+	}
 };
 
 
@@ -264,14 +264,14 @@ var reveal = function () {
 	for (var i = 0; i < deckReference.length; i++) {
 		if (revealName===deckReference[i].name) {
 			nameArray.push(deckReference[i]);
-		};
-	};
+		}
+	}
 
-	for (var i = 0; i < nameArray.length; i++) {
-		if (revealSuit===nameArray[i].suit) {
+	for (var z = 0; z < nameArray.length; z++) {
+		if (revealSuit===nameArray[z].suit) {
 			return nameArray[i].img;
-		};
-	};
+		}
+	}
 };
 
 
@@ -283,7 +283,7 @@ var testDealer = function() {
 	var newValue = 0;
 	for (var i = 0; i < dealerCards.length; i++) {
 		newValue = newValue + dealerCards[i].value;
-	};
+	}
 	dealerHandValue = newValue;
 	dealerStatus.textContent = "Dealer hand is valued at "+dealerHandValue;
 };
@@ -345,8 +345,8 @@ var handleStay = function(event){
 			dealerStatus.textContent = "Push. Dealer hand is valued at "+dealerHandValue;
 			playerStatus.textContent = "Push. Player hand is valued at "+playerHandValue;
 			console.log("Draw. Player gets back bet");
-		};
-	};	
+		}
+	}
 
 };
 
@@ -374,18 +374,18 @@ var resetAcePlayer = function () {
 	newValue = 0;
 	for (var i = 0; i < playerCards.length; i++) {
 		newValue = newValue + playerCards[i].value;
-	};
+	}
 
 	playerHandValue = newValue;
 	console.log(playerHandValue);
 
-	for (var i = 0; i < playerCards.length; i++) {
+	for (var a = 0; a < playerCards.length; a++) {
 		var aceCount =0;
-		if (playerCards[i].name="Ace") {
+		if (playerCards[a].name="Ace") {
 			aceCount += aceCount +1;
 			console.log(aceCount);
-		};
-	};
+		}
+	}
 	playerAces = aceCount;
 	console.log(playerAces);
 
@@ -401,48 +401,48 @@ var resetAcePlayer = function () {
 		if (newPlayerHandValue2>21) {
 			newPlayerHandValue1 = playerHandValue - (playerAces*10);
 			console.log(playerHandValue1);
-		};
+		}
 	} else if (playerAces===3) {
 		newPlayerHandValue2 = playerHandValue - ((playerAces-1)*10);
 		console.log(playerHandValue2);
 		if (newPlayerHandValue2>21) {
 			newPlayerHandValue1 = playerHandValue - (playerAces*10);
 			console.log(playerHandValue1);
-		};
+		}
 	} else if (playerAces===4) {
 		newPlayerHandValue2 = playerHandValue - ((playerAces-1)*10);
 		console.log(playerHandValue2);
 		if (newPlayerHandValue2>21) {
 			newPlayerHandValue1 = playerHandValue - (playerAces*10);
 			console.log(playerHandValue1);
-		};
-	};
+		}
+	}
 
 	if (playerAces===0 && playerHandValue>21) {
 		playerHandValue = playerHandValue;
 		console.log(playerHandValue);
-	};
+	}
 	if (playerAces===1 && playerHandValue>21) {
 		playerHandValue = newPlayerHandValue2;
 		console.log(playerHandValue);
 	} else{
 		playerHandValue = playerHandValue;
 		console.log(playerHandValue);
-	};
+	}
 	if (playerAces===2 && newPlayerHandValue2>21) {
 		playerHandValue = newPlayerHandValue1;
 		console.log(playerHandValue);
 	} else{
 		playerHandValue = playerHandValue;
 		console.log(playerHandValue);
-	};
+	}
 	if (playerAces===3 && newPlayerHandValue1>21) {
 		playerHandValue = newPlayerHandValue1;
 		console.log(playerHandValue);
 	} else{
 		playerHandValue = playerHandValue;
 		console.log(playerHandValue);
-	};
+	}
 };
 
 // Problem if bust over 21 and Ace not last card in set, will reset to zero
@@ -483,9 +483,9 @@ var aceDealer = function() {
 		var aceCount =0;
 		if (dealerCards[i].name="Ace") {
 			aceCount += aceCount +1;
-		};
+		}
 	//Want to get the number of aces and then see if hand value options with a=1 is <21 
-	};
+	}
 	dealerAces =aceCount;
 	dealerHandValue = dealerHandValue - dealerAces*10;
 };
@@ -497,22 +497,21 @@ var resetAceDealer = function () {
 		dealerHandValue = dealerHandValue - ((dealerAces-1)*10);
 		if (dealerHandValue>21) {
 			dealerHandValue = dealerHandValue - (dealerAces*10);
-		};
+		}
 	} else if (dealerAces===3) {
 		dealerHandValue = dealerHandValue - ((dealerAces-1)*10);
 		if (dealerHandValue>21) {
 			dealerHandValue = dealerHandValue - (dealerAces*10);
-		};
+		}
 	} else if (dealerAces===4) {
 		dealerHandValue = dealerHandValue - ((dealerAces-1)*10);
 		if (dealerHandValue>21) {
 			dealerHandValue = dealerHandValue - (dealerAces*10);
-		};
+		}
 	} else {
 		dealerHandValue = dealerHandValue;
-	};
+	}
 };
-
 
 
 
